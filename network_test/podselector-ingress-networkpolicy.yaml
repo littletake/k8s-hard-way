@@ -1,0 +1,19 @@
+# インデントミスに注意
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: podselector-ingress-networkpolicy
+spec:
+  podSelector:
+    matchLabels:
+      app: np2
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: np1
+  ports:
+    - protocol: TCP
+      port: 80
